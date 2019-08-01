@@ -2,6 +2,14 @@
 Changelog for package rqt_drone_teleop
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.0.0 (2019-08-01)
+------------------
+* corrected dependancies
+* stop drone button now also stops code
+* updated gui image
+* removed launch and perspective
+* Contributors: Nikhil Khedekar
+
 0.0.1 (2019-07-20)
 ------------------
 * updated makefile

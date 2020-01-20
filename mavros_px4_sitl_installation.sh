@@ -40,6 +40,9 @@ echo 'Building FastRTPS and FastCDR'
 (cd eProsima_FastRTPS-1.7.1-Linux && ./configure --libdir=/usr/lib && make -j2 && sudo make install)
 rm -rf requiredcomponents eprosima_fastrtps-1-7-1-linux.tar.gz
 
+echo 'Installing catkin tools'
+sudo apt-get install python-catkin-tools
+
 echo 'Setting up catkin workspace'
 mkdir -p catkin_ws/src
 cd catkin_ws/src
@@ -51,6 +54,9 @@ ln -s Firmware/Tools/sitl_gazebo mavlink_sitl_gazebo
 cd ..
 catkin build
 echo 'source '$PWD'/devel/setup.bash' >> ~/.bashrc
+echo 'export GAZEBO_RESOURCE_PATH=${GAZEBO_RESOURCE_PATH}:/usr/share/gazebo-7' >> ~/.bashrc
+echo 'export GAZEBO_MODEL_PATH=${GAZEBO_MODEL_PATH}:/opt/ros/kinetic/share/jderobot_assets/models' >> ~/.bashrc
+
 source ~/.bashrc
 
 echo 'Installation of MAVROS and PX4 Complete. Test using: roslaunch px4 mavros_posix_sitl.launch'

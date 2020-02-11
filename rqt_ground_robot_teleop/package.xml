@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-	<name>rqt_drone_teleop</name>
+	<name>rqt_ground_robot_teleop</name>
 	<version>1.2.0</version>
-	<description>A common drone teleop interface for all drone exercises in the JdeRobot Robotics Academy</description>
+	<description>A common ground robot teleop interface for all ground robot exercises in the JdeRobot Robotics Academy</description>
 
 	<maintainer email="nikhilvkhedekar@gmail.com">Nikhil Khedekar</maintainer>
 	<author email="nikhilvkhedekar@gmail.com">Nikhil Khedekar</author>

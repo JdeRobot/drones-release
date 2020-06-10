@@ -1,0 +1,59 @@
+ros-melodic-drone-wrapper (1.3.2-2stretch) stretch; urgency=high
+
+  * New velocity control. Masks modified. The drone now keeps it position when velocities are zero.
+  * Added position control.
+  * Added mixed control.
+  * Take off modified: now is done by mixed control. Time to take off reduced. Take off height can be configurable.
+  * Added all args to script. Needed to pass arguments to exercises.
+  * Contributors: diegomrt, Pedro Arias
+
+ -- Nikhil Khedekar <nikhilvkhedekar@gmail.com>  Tue, 05 May 2020 22:00:00 -0000
+
+ros-melodic-drone-wrapper (1.3.1-2stretch) stretch; urgency=high
+
+  * Fixing dependency on metapackage
+  * Contributors: Pedro Arias
+
+ -- Nikhil Khedekar <nikhilvkhedekar@gmail.com>  Thu, 13 Feb 2020 23:00:00 -0000
+
+ros-melodic-drone-wrapper (1.2.0-2stretch) stretch; urgency=high
+
+
+
+ -- Nikhil Khedekar <nikhilvkhedekar@gmail.com>  Mon, 10 Feb 2020 23:00:00 -0000
+
+ros-melodic-drone-wrapper (1.1.0-2stretch) stretch; urgency=high
+
+  * generating pkg for melodic distro
+  * Contributors: Pedro Arias
+
+ -- Nikhil Khedekar <nikhilvkhedekar@gmail.com>  Sun, 19 Jan 2020 23:00:00 -0000
+
+ros-melodic-drone-wrapper (1.0.1-2stretch) stretch; urgency=high
+
+  * anonymised drone and added topics as parameters
+  * added new format launch files
+  * updated scripts and readme
+  * Contributors: Nikhil Khedekar
+
+ -- Nikhil Khedekar <nikhilvkhedekar@gmail.com>  Sat, 17 Aug 2019 22:00:00 -0000
+
+ros-melodic-drone-wrapper (1.0.0-2stretch) stretch; urgency=high
+
+  * corrected dependancies
+  * Contributors: Nikhil Khedekar
+
+ -- Nikhil Khedekar <nikhilvkhedekar@gmail.com>  Wed, 31 Jul 2019 22:00:00 -0000
+
+ros-melodic-drone-wrapper (0.0.1-2stretch) stretch; urgency=high
+
+  * updated makefile
+  * removed packages requiring source builds
+  * converted returns to numpy arrays
+  * made DroneWrapper importable
+  * Added files from colab-gsoc2019-Nikhil_Khedekar
+  * Contributors: Nikhil Khedekar
+
+ -- Nikhil Khedekar <nikhilvkhedekar@gmail.com>  Fri, 19 Jul 2019 22:00:00 -0000
+
+

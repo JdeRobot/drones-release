@@ -1,3 +1,30 @@
+## jderobot_drones (melodic) - 1.3.2-4
+
+The packages in the `jderobot_drones` repository were released into the `melodic` distro by running `/usr/bin/bloom-release jderobot_drones --rosdistro melodic` on `Sun, 28 Jun 2020 11:17:26 -0000`
+
+These packages were released:
+- `drone_wrapper`
+- `jderobot_drones`
+- `rqt_drone_teleop`
+- `rqt_ground_robot_teleop`
+
+Version of package(s) in repository `jderobot_drones`:
+
+- upstream repository: https://github.com/JdeRobot/drones.git
+- release repository: https://github.com/JdeRobot/drones-release.git
+- rosdistro version: `1.3.2-3`
+- old version: `1.3.2-3`
+- new version: `1.3.2-4`
+
+Versions of tools used:
+
+- bloom version: `0.9.7`
+- catkin_pkg version: `0.4.12`
+- rosdep version: `0.19.0`
+- rosdistro version: `0.8.2`
+- vcstools version: `0.1.42`
+
+
 ## jderobot_drones (melodic) - 1.3.2-3
 
 The packages in the `jderobot_drones` repository were released into the `melodic` distro by running `/usr/bin/bloom-release jderobot_drones --rosdistro melodic` on `Thu, 11 Jun 2020 14:14:23 -0000`

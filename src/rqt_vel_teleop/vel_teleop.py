@@ -3,6 +3,7 @@
 import os
 import rospy
 import rospkg
+import threading
 
 from qt_gui.plugin import Plugin
 from python_qt_binding import loadUi
@@ -10,21 +11,23 @@ from python_qt_binding.QtWidgets import QWidget
 from python_qt_binding.QtGui import QIcon, QPixmap, QImage
 from python_qt_binding.QtCore import pyqtSignal, Qt
 
-from sensor_msgs.msg import Image
-import cv2
-from cv_bridge import CvBridge
-from std_msgs.msg import Bool, Float64
+from std_msgs.msg import Bool
 from geometry_msgs.msg import Pose, PoseStamped, Twist, TwistStamped
+from mavros_msgs.msg import ExtendedState
 
 from teleopWidget import TeleopWidget
 from sensorsWidget import SensorsWidget
 
+from drone_wrapper.drone_wrapper_class import DroneWrapper
 
-class DroneTeleop(Plugin):
+drone = DroneWrapper(name='rqt')
+
+
+class VelTeleop(Plugin):
 	def __init__(self, context):
-		super(DroneTeleop, self).__init__(context)
+		super(VelTeleop, self).__init__(context)
 		# Give QObjects reasonable names
-		self.setObjectName('DroneTeleop')
+		self.setObjectName('VelTeleop')
 
 		# Process standalone plugin command-line arguments
 		from argparse import ArgumentParser
@@ -42,11 +45,11 @@ class DroneTeleop(Plugin):
 		self._widget = QWidget()
 		# Get path to UI file which should be in the "resource" folder of this package
 		ui_file = os.path.join(rospkg.RosPack().get_path(
-			'rqt_drone_teleop'), 'resource', 'DroneTeleop.ui')
+			'rqt_drone_teleop'), 'resource', 'VelocityTeleop.ui')
 		# Extend the widget with all attributes and children from UI file
 		loadUi(ui_file, self._widget)
 		# Give QObjects reasonable names
-		self._widget.setObjectName('DroneTeleopUi')
+		self._widget.setObjectName('VelTeleopUi')
 		# Show _widget.windowTitle on left-top of each plugin (when
 		# it's set in _widget). This is useful when you open multiple
 		# plugins at once. Also if you open multiple instances of your
@@ -76,14 +79,16 @@ class DroneTeleop(Plugin):
 		self._widget.stopButton.clicked.connect(self.stop_drone)
 
 		# Add Publishers
-		self.takeoff_pub = rospy.Publisher('gui/takeoff_land', Bool, queue_size=1)
 		self.play_stop_pub = rospy.Publisher('gui/play_stop', Bool, queue_size=1)
-		self.twist_pub = rospy.Publisher('gui/twist', Twist, queue_size=1)
 
 		# Add global variables
+		self.extended_state = ExtendedState()
 		self.shared_twist_msg = Twist()
 		self.current_pose = Pose()
+		self.pose_frame = ''
 		self.current_twist = Twist()
+		self.twist_frame = ''
+		self.is_running = True
 		self.stop_icon = QIcon()
 		self.stop_icon.addPixmap(QPixmap(os.path.join(rospkg.RosPack().get_path(
 			'rqt_drone_teleop'), 'resource', 'stop.png')), QIcon.Normal, QIcon.Off)
@@ -91,8 +96,6 @@ class DroneTeleop(Plugin):
 		self.play_icon = QIcon()
 		self.play_icon.addPixmap(QPixmap(os.path.join(rospkg.RosPack().get_path(
 			'rqt_drone_teleop'), 'resource', 'play.png')), QIcon.Normal, QIcon.Off)
-
-		self.bridge = CvBridge()
 
 		self.teleop_stick_1 = TeleopWidget(self, 'set_linear_xy', 151)
 		self._widget.tlLayout.addWidget(self.teleop_stick_1)
@@ -108,15 +111,13 @@ class DroneTeleop(Plugin):
 		# Add widget to the user interface
 		context.add_widget(self._widget)
 
-		# Add Subscibers
-		cam_frontal_topic = rospy.get_param('cam_frontal_topic', '/iris/cam_frontal/image_raw')
-		cam_ventral_topic = rospy.get_param('cam_ventral_topic', '/iris/cam_ventral/image_raw')
-		rospy.Subscriber(cam_frontal_topic, Image, self.cam_frontal_cb)
-		rospy.Subscriber(cam_ventral_topic, Image, self.cam_ventral_cb)
-		rospy.Subscriber('interface/filtered_img', Image, self.filtered_img_cb)
-		rospy.Subscriber('interface/threshed_img', Image, self.threshed_img_cb)
-		rospy.Subscriber('mavros/local_position/pose', PoseStamped, self.pose_stamped_cb)
-		rospy.Subscriber('mavros/local_position/velocity_body', TwistStamped, self.twist_stamped_cb)
+		# Add Subscribers
+		rospy.Subscriber('drone_wrapper/local_position/pose', PoseStamped, self.pose_stamped_cb)
+		rospy.Subscriber('drone_wrapper/local_position/velocity_body', TwistStamped, self.twist_stamped_cb)
+		rospy.Subscriber('drone_wrapper/extended_state', ExtendedState, self.extended_state_cb)
+
+		# Add Timer
+		self.update_status_info()
 
 	def show_sensors_widget(self, state):
 		if state == Qt.Checked:
@@ -124,33 +125,20 @@ class DroneTeleop(Plugin):
 		else:
 			self.sensors_widget.hide()
 
-	def msg_to_pixmap(self, msg):
-		cv_img = self.bridge.imgmsg_to_cv2(msg)
-		h, w, _ = cv_img.shape
-		bytesPerLine = 3 * w
-		q_img = QImage(cv_img.data, w, h, bytesPerLine, QImage.Format_RGB888)
-		return QPixmap.fromImage(q_img).scaled(320, 240)
-
-	def cam_frontal_cb(self, msg):
-		self._widget.img_frontal.setPixmap(self.msg_to_pixmap(msg))
-		self.sensors_widget.sensorsUpdate.emit()
-
-	def cam_ventral_cb(self, msg):
-		self._widget.img_ventral.setPixmap(self.msg_to_pixmap(msg))
-
-	def threshed_img_cb(self, msg):
-		self._widget.img_threshed.setPixmap(self.msg_to_pixmap(msg))
-
-	def filtered_img_cb(self, msg):
-		self._widget.img_filtered.setPixmap(self.msg_to_pixmap(msg))
-
 	def pose_stamped_cb(self, msg):
 		self.current_pose = msg.pose
-		self.set_info_pos(self.current_pose, msg.header.frame_id)
+		self.pose_frame = msg.header.frame_id
+		self.sensors_widget.sensorsUpdate.emit()
 
 	def twist_stamped_cb(self, msg):
 		self.current_twist = msg.twist
-		self.set_info_vel(self.current_twist, msg.header.frame_id)
+		self.twist_frame = msg.header.frame_id
+
+	def update_status_info(self):
+		threading.Timer(0.5, self.update_status_info).start()
+		if self.is_running:
+			self.set_info_pos(self.current_pose, self.pose_frame)
+			self.set_info_vel(self.current_twist, self.twist_frame)
 
 	def set_info_pos(self, pose, frame):
 		self._widget.posX.setText(str(round(pose.position.x, 2)))
@@ -167,19 +155,39 @@ class DroneTeleop(Plugin):
 
 		self._widget.velFrame.setText(str(frame))
 
+	def extended_state_cb(self, msg):
+		if self.extended_state.landed_state != msg.landed_state:
+			self.extended_state = msg
+			if self.extended_state.landed_state == 1:  # ON GROUND
+				self._widget.takeoffButton.setText("Take Off")
+			elif self.extended_state.landed_state == 2:  # IN AIR
+				self._widget.takeoffButton.setText("Land")
+
+	def takeoff_drone(self):
+		try:
+			global drone
+			drone.takeoff()
+			self.takeoff = True
+		finally:
+			rospy.loginfo('Takeoff finished')
+
 	def call_takeoff_land(self):
+		if self.extended_state.landed_state == 0:  # UNDEFINED --> not ready
+			self._widget.term_out.append('Drone not ready')
+			return
+
 		if self.takeoff == True:
-			self._widget.takeoffButton.setText("Take Off")
 			rospy.loginfo('Landing')
 			self._widget.term_out.append('Landing')
-			self.takeoff_pub.publish(Bool(False))
+			global drone
+			drone.land()
 			self.takeoff = False
 		else:
-			self._widget.takeoffButton.setText("Land")
 			rospy.loginfo('Taking off')
 			self._widget.term_out.append('Taking off')
-			self.takeoff_pub.publish(Bool(True))
-			self.takeoff = True
+			x = threading.Thread(target=self.takeoff_drone)
+			x.daemon = True
+			x.start()
 
 	def call_play(self):
 		if not self.play_code_flag:
@@ -208,7 +216,9 @@ class DroneTeleop(Plugin):
 			self.call_play()
 		for i in range(5):
 			self.shared_twist_msg = Twist()
-			self.twist_pub.publish(self.shared_twist_msg)
+			global drone
+			drone.set_cmd_vel(self.shared_twist_msg.linear.x, self.shared_twist_msg.linear.y,
+							  self.shared_twist_msg.linear.z, self.shared_twist_msg.angular.z)
 			rospy.sleep(0.05)
 
 	def set_linear_xy(self, u, v):
@@ -219,7 +229,10 @@ class DroneTeleop(Plugin):
 		rospy.logdebug('Stick 2 value changed to - x: %.2f y: %.2f', x, y)
 		self.shared_twist_msg.linear.x = x
 		self.shared_twist_msg.linear.y = y
-		self.twist_pub.publish(self.shared_twist_msg)
+
+		global drone
+		drone.set_cmd_vel(self.shared_twist_msg.linear.x, self.shared_twist_msg.linear.y,
+						  self.shared_twist_msg.linear.z, self.shared_twist_msg.angular.z)
 
 	def set_alt_yawrate(self, u, v):
 		az = -self.vertical_velocity_scaling_factor * u
@@ -229,10 +242,14 @@ class DroneTeleop(Plugin):
 		rospy.logdebug('Stick 1 value changed to - az: %.2f z: %.2f', az, z)
 		self.shared_twist_msg.linear.z = z
 		self.shared_twist_msg.angular.z = az
-		self.twist_pub.publish(self.shared_twist_msg)
+
+		global drone
+		drone.set_cmd_vel(self.shared_twist_msg.linear.x, self.shared_twist_msg.linear.y,
+						  self.shared_twist_msg.linear.z, self.shared_twist_msg.angular.z)
 
 	def shutdown_plugin(self):
 		# TODO unregister all publishers here
+		self.is_running = False
 		pass
 
 	def save_settings(self, plugin_settings, instance_settings):

@@ -2,6 +2,27 @@
 Changelog for package drone_wrapper
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.3.5 (2020-12-29)
+------------------
+* Removed RQT dependencies with subscribers and topics. These topics are now throttled by new drone_wrapper topics. This allows to make the RQT independent to the kind of drone connected.
+* Template dependency removed from rqt_drone_teleop. The template callbacks are no longer required to send commands to the drone. The command flow goes directly from the rqt to the drone wrapper without passing through the exercise template.
+* New drone_assets pkg replacing old jderobot_assets pkg.
+* Removed RQT dependencies with subscribers and topics. These topics are now throttled by new drone_wrapper topics. This allows to make the RQT independent to the kind of drone connected.
+* Template dependency removed from rqt_drone_teleop. The template callbacks are no longer required to send commands to the drone. The command flow goes directly from the rqt to the drone wrapper without passing through the exercise template.
+* Contributors: pariaspe
+
+1.3.4 (2020-06-28)
+------------------
+
+1.3.3 (2020-06-10)
+------------------
+* Added get_velocity() and get_yaw_rate()
+* added method to get landed state
+* Change yaw_rate to yaw in set_cmd_pos()
+* PX4 parameters now can be modified during launching through a config YML file.
+* Methods to get and set parameters implemented.
+* Contributors: Diego Martín, diegomrt, pariaspe
+
 1.3.2 (2020-05-06)
 ------------------
 * New velocity control. Masks modified. The drone now keeps it position when velocities are zero.

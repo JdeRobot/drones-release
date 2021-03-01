@@ -2,6 +2,9 @@
 Changelog for package drone_assets
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.3.7 (2021-03-01)
+------------------
+
 1.3.6 (2021-01-12)
 ------------------
 * Removed duplicated jderobot logo

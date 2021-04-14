@@ -2,6 +2,9 @@
 Changelog for package drone_wrapper
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.3.8 (2021-04-14)
+------------------
+
 1.3.7 (2021-03-01)
 ------------------
 * Added namespace to topics and services

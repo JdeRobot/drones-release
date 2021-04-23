@@ -2,6 +2,11 @@
 Changelog for package rqt_ground_robot_teleop
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.4.0 (2021-04-23)
+------------------
+* Noetic release
+* Contributors: pariaspe
+
 1.3.8 (2021-04-14)
 ------------------
 

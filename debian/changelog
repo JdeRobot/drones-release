@@ -1,0 +1,104 @@
+ros-noetic-drone-assets (1.4.0-1buster) buster; urgency=high
+
+  * Noetic release
+  * Contributors: pariaspe
+
+ -- Pedro Arias <pedroariasperez96@gmail.com>  Thu, 22 Apr 2021 22:00:00 -0000
+
+ros-noetic-drone-assets (1.3.8-1buster) buster; urgency=high
+
+  * Added urdf as installed dir
+  * Contributors: pariaspe
+
+ -- Pedro Arias <pedroariasperez96@gmail.com>  Tue, 13 Apr 2021 22:00:00 -0000
+
+ros-noetic-drone-assets (1.3.7-1buster) buster; urgency=high
+
+
+
+ -- Pedro Arias <pedroariasperez96@gmail.com>  Sun, 28 Feb 2021 23:00:00 -0000
+
+ros-noetic-drone-assets (1.3.6-1buster) buster; urgency=high
+
+  * Removed duplicated jderobot logo
+  * Iris models updated
+  * Contributors: pariaspe
+
+ -- Pedro Arias <pedroariasperez96@gmail.com>  Mon, 11 Jan 2021 23:00:00 -0000
+
+ros-noetic-drone-assets (1.3.5-1buster) buster; urgency=high
+
+  * New drone_assets pkg replacing old jderobot_assets pkg.
+  * Fixed new iris models. Added iris base and iris dual cam.
+  * Added models and urdf. CMakeLists and package.xml created.
+  * Contributors: pariaspe
+
+ -- Pedro Arias <pedroariasperez96@gmail.com>  Mon, 28 Dec 2020 23:00:00 -0000
+
+ros-noetic-drone-assets (1.3.4-1buster) buster; urgency=high
+
+
+
+ -- Pedro Arias <pedroariasperez96@gmail.com>  Sat, 27 Jun 2020 22:00:00 -0000
+
+ros-noetic-drone-assets (1.3.3-1buster) buster; urgency=high
+
+
+
+ -- Pedro Arias <pedroariasperez96@gmail.com>  Tue, 09 Jun 2020 22:00:00 -0000
+
+ros-noetic-drone-assets (1.3.2-1buster) buster; urgency=high
+
+
+
+ -- Pedro Arias <pedroariasperez96@gmail.com>  Tue, 05 May 2020 22:00:00 -0000
+
+ros-noetic-drone-assets (1.3.1-1buster) buster; urgency=high
+
+
+
+ -- Pedro Arias <pedroariasperez96@gmail.com>  Fri, 14 Feb 2020 12:30:00 -0000
+
+ros-noetic-drone-assets (1.3.0-1buster) buster; urgency=high
+
+
+
+ -- Pedro Arias <pedroariasperez96@gmail.com>  Fri, 14 Feb 2020 12:22:00 -0000
+
+ros-noetic-drone-assets (1.2.0-1buster) buster; urgency=high
+
+
+
+ -- Pedro Arias <pedroariasperez96@gmail.com>  Mon, 10 Feb 2020 23:00:00 -0000
+
+ros-noetic-drone-assets (1.1.0-1buster) buster; urgency=high
+
+
+
+ -- Pedro Arias <pedroariasperez96@gmail.com>  Sun, 19 Jan 2020 23:00:00 -0000
+
+ros-noetic-drone-assets (1.0.2-1buster) buster; urgency=high
+
+
+
+ -- Pedro Arias <pedroariasperez96@gmail.com>  Sat, 18 Jan 2020 23:00:00 -0000
+
+ros-noetic-drone-assets (1.0.1-1buster) buster; urgency=high
+
+
+
+ -- Pedro Arias <pedroariasperez96@gmail.com>  Sat, 17 Aug 2019 22:00:00 -0000
+
+ros-noetic-drone-assets (1.0.0-1buster) buster; urgency=high
+
+
+
+ -- Pedro Arias <pedroariasperez96@gmail.com>  Wed, 31 Jul 2019 22:00:00 -0000
+
+ros-noetic-drone-assets (0.0.1-1buster) buster; urgency=high
+
+
+
+ -- Pedro Arias <pedroariasperez96@gmail.com>  Fri, 19 Jul 2019 22:00:00 -0000
+
+

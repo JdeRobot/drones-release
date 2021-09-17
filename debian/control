@@ -1,0 +1,12 @@
+Source: ros-noetic-drone-circuit-assets
+Section: misc
+Priority: optional
+Maintainer: Pedro Arias <pedroariasperez96@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), python3-setuptools, ros-noetic-catkin
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-noetic-drone-circuit-assets
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, 
+Description: The JdeRobot Behavior Metrics drone assets package

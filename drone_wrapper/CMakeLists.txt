@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.0.2)
 project(drone_wrapper)
 
 find_package(catkin REQUIRED COMPONENTS
@@ -16,6 +16,7 @@ catkin_python_setup()
 catkin_package()
 
 install(PROGRAMS
+	src/drone_tello_class.py
 	scripts/play_python_code
 	scripts/load_parameters
 	DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}

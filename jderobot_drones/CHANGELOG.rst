@@ -2,6 +2,12 @@
 Changelog for package jderobot_drones
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.4.1 (2021-09-17)
+------------------
+* Added drone circuit assets for Behavior Metrics
+* Added tello_driver v1
+* Contributors: Utkarsh Mishra, pariaspe
+
 1.4.0 (2021-04-23)
 ------------------
 * Noetic release

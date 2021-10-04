@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <package format="3">
 	<name>rqt_drone_teleop</name>
-	<version>1.4.1</version>
+	<version>1.4.2</version>
 	<description>A common drone teleop interface for all drone exercises in the JdeRobot Robotics Academy</description>
 
-	<maintainer email="nikhilvkhedekar@gmail.com">Nikhil Khedekar</maintainer>
+	<maintainer email="pedroariasperez96@gmail.com">Pedro Arias</maintainer>
 	<author email="nikhilvkhedekar@gmail.com">Nikhil Khedekar</author>
 	<author>Pedro Arias</author>
 
@@ -16,7 +16,7 @@
 	<depend>rqt_gui</depend>
 	<depend>rqt_gui_py</depend>
 	<depend>sensor_msgs</depend>
-	<depend>python-rospkg</depend>
+	<depend>python3-rospkg</depend>
 	<depend>roslib</depend>
 	<depend>drone_wrapper</depend>
 

@@ -1,0 +1,12 @@
+Source: ros-noetic-drone-wrapper
+Section: misc
+Priority: optional
+Maintainer: Pedro Arias <pedroariasperez96@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin, ros-noetic-cv-bridge, ros-noetic-geometry-msgs, ros-noetic-mavros, ros-noetic-mavros-msgs, ros-noetic-rospy, ros-noetic-sensor-msgs, ros-noetic-tf
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-noetic-drone-wrapper
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-noetic-cv-bridge, ros-noetic-geometry-msgs, ros-noetic-mavros, ros-noetic-mavros-msgs, ros-noetic-rospy, ros-noetic-sensor-msgs, ros-noetic-tf
+Description: The drone_wrapper package

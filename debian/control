@@ -1,0 +1,12 @@
+Source: ros-noetic-rqt-ground-robot-teleop
+Section: misc
+Priority: optional
+Maintainer: Pedro Arias <pedroariasperez96@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), python3-rospkg, ros-noetic-catkin, ros-noetic-geometry-msgs, ros-noetic-roslib, ros-noetic-rospy, ros-noetic-rqt-gui, ros-noetic-rqt-gui-py, ros-noetic-sensor-msgs
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-noetic-rqt-ground-robot-teleop
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python3-rospkg, ros-noetic-geometry-msgs, ros-noetic-roslib, ros-noetic-rospy, ros-noetic-rqt-gui, ros-noetic-rqt-gui-py, ros-noetic-sensor-msgs
+Description: A common ground robot teleop interface for all ground robot exercises in the JdeRobot Robotics Academy

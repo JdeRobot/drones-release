@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <package format="3">
 	<name>drone_wrapper</name>
-	<version>1.4.1</version>
+	<version>1.4.2</version>
 	<description>The drone_wrapper package</description>
 
-	<maintainer email="nikhilvkhedekar@gmail.com">Nikhil Khedekar</maintainer>
+	<maintainer email="pedroariasperez96@gmail.com">Pedro Arias</maintainer>
 	<author email="nikhilvkhedekar@gmail.com">Nikhil Khedekar</author>
 
 	<license>MIT</license>

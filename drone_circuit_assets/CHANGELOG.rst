@@ -2,6 +2,11 @@
 Changelog for package drone_circuit_assets
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.4.2 (2021-10-04)
+------------------
+* Removed drone_assets reference from drone_circuit_assets CMakeLists
+* Contributors: pariaspe
+
 1.4.1 (2021-09-17)
 ------------------
 * Added drone circuit assets for Behavior Metrics

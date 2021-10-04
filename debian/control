@@ -1,0 +1,12 @@
+Source: ros-noetic-jderobot-drones
+Section: misc
+Priority: optional
+Maintainer: Pedro Arias <pedroariasperez96@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin
+Homepage: https://github.com/JdeRobot/drones
+Standards-Version: 3.9.2
+
+Package: ros-noetic-jderobot-drones
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-noetic-drone-assets, ros-noetic-drone-circuit-assets, ros-noetic-drone-wrapper, ros-noetic-rqt-drone-teleop, ros-noetic-rqt-ground-robot-teleop, ros-noetic-tello-driver
+Description: The jderobot_drones stack

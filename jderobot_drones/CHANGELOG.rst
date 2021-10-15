@@ -2,20 +2,12 @@
 Changelog for package jderobot_drones
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.4.2 (2021-10-04)
+1.3.9 (2021-10-15)
 ------------------
-* Fixing Jenkins Build errors
-* Contributors: pariaspe
-
-1.4.1 (2021-09-17)
-------------------
-* Added drone circuit assets for Behavior Metrics
-* Added tello_driver v1
-* Contributors: Utkarsh Mishra, pariaspe
-
-1.4.0 (2021-04-23)
-------------------
-* Noetic release
+* Added tello driver
+* Drone wrapper is now compatible with tello driver
+* New models in drone_assets
+* Corrected maintainer for drone packages
 * Contributors: pariaspe
 
 1.3.8 (2021-04-14)

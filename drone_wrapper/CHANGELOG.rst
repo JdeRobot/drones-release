@@ -2,17 +2,18 @@
 Changelog for package drone_wrapper
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.4.2 (2021-10-04)
+1.3.9 (2021-10-15)
 ------------------
-* Removed old file from drone_wrapper CMakeLists
-* corrected maintainer
-* Contributors: Nikhil Khedekar, pariaspe
-
-1.4.0 (2021-04-23)
-------------------
-* Noetic release
-* Removed unused dependency.
-* Contributors: pariaspe
+* Removed old reference to non-existing file
+* Drone wrapper takeoff adjusted. Added precision error to decided when takeoff is over.
+* Added get_battery to drone_warpper api
+* Added drone_model rosparam to drone_wrapper cam topics
+* Removed unused dependency
+* Added battery state
+* Reduced to minimum drone model dependencies
+* Drone wrapper can be also invoke now as node
+* Added Tello compatibility basics
+* Contributors: Diego Martín, Nikhil Khedekar, pariaspe
 
 1.3.8 (2021-04-14)
 ------------------

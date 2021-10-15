@@ -2,15 +2,15 @@
 Changelog for package drone_assets
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.4.2 (2021-10-04)
+1.3.9 (2021-10-15)
 ------------------
-* Added gazebo_ros dependency to drone_assets
-* Contributors: pariaspe
-
-1.4.0 (2021-04-23)
-------------------
-* Noetic release
-* Contributors: pariaspe
+* Fix path of custom_box_target
+* Added new ocean model
+* Added a new model slab
+* Added new simple_labyrinth_green
+* Added plugins
+* Added gas_station model
+* Contributors: Arka, RUFFY-369, iamarkaj, pariaspe
 
 1.3.8 (2021-04-14)
 ------------------

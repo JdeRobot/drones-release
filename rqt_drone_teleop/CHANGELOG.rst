@@ -2,6 +2,9 @@
 Changelog for package rqt_drone_teleop
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.3.10 (2021-11-04)
+-------------------
+
 1.3.9 (2021-10-15)
 ------------------
 * Added default values to ensure retro-compatibility
